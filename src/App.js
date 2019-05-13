@@ -1,30 +1,29 @@
 import React from "react";
 import "./App.css";
-import { observer, observable } from "mobx-react";
-import CreateToDos from "./CreateToDos";
-import ListToDos from "./ListToDos";
+import { observer } from "mobx-react";
+import CreateItems from "./CreateItems";
+import ShowItems from "./ShowItems";
 import { decorate } from "mobx";
 
 class App extends React.Component {
   state = {
-    listOfToDos: [{ name: "A", id: 1 }, { name: "B", id: 2 }]
+    listOfItems: []
   };
   createNewListItem(item) {
-    this.setState({
-      listOfToDos: this.state.listOfToDos + item
-    });
+    this.setState(state => ({
+      listOfItems: state.listOfItems.concat(item)
+    }));
   }
   render() {
-    //const store = this.props.store;
     return (
       <div className="App">
-        ToDo-List
-        <CreateToDos
+        To-Do List
+        <CreateItems
           newListItem={item => {
             this.createNewListItem(item);
           }}
         />
-        <ListToDos listOfToDos={this.props.ListToDos} />
+        <ShowItems listOfItems={this.state.listOfItems} />
       </div>
     );
   }
