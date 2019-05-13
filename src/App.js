@@ -8,7 +8,7 @@ import { decorate } from "mobx";
 class App extends React.Component {
   state = {
     listOfItems: [{
-      name:"Anson", id:1
+      message:"Anson", id:1
     }]
   };
   createNewListItem(item) {
