@@ -10,6 +10,7 @@ class ShowItems extends React.Component {
               <div className="list-item-details">
                 <input type="checkbox" />
                 {item.name}
+                <button onClick={() => this.props.onDeleteItem(item)} className="remove-item">Remove</button>
               </div>
             </li>
           ))}

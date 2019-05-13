@@ -7,11 +7,18 @@ import { decorate } from "mobx";
 
 class App extends React.Component {
   state = {
-    listOfItems: []
+    listOfItems: [{
+      name:"Anson", id:1
+    }]
   };
   createNewListItem(item) {
     this.setState(state => ({
       listOfItems: state.listOfItems.concat(item)
+    }));
+  }
+  removeListItem = (item) => {
+    this.setState((state) => ({
+      listOfItems: state.listOfItems.filter((i) => i.id !==item.id)
     }));
   }
   render() {
@@ -23,7 +30,7 @@ class App extends React.Component {
             this.createNewListItem(item);
           }}
         />
-        <ShowItems listOfItems={this.state.listOfItems} />
+        <ShowItems onDeleteItem={this.removeListItem} listOfItems={this.state.listOfItems} />
       </div>
     );
   }
