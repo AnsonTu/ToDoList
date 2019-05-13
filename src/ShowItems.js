@@ -2,7 +2,6 @@ import React from "react";
 
 class ShowItems extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <div>
         <ul className="to-do-list">
