@@ -2,8 +2,8 @@ import React from "react";
 import "./App.css";
 import CreateItems from "./CreateItems";
 import ShowItems from "./ShowItems";
-import { observer } from "mobx-react";
-import { decorate, action, observable } from "mobx";
+/*import { observer } from "mobx-react";
+import { decorate, action, observable } from "mobx";*/
 
 class App extends React.Component {
   state = {
@@ -53,10 +53,10 @@ class App extends React.Component {
   }
 }
 
-decorate(App, {
+/*decorate(App, {
   App: observer,
   CreateToDos: observer,
   ListToDos: observer
-});
+});*/
 
 export default App;
