@@ -10,8 +10,9 @@ class App extends React.Component {
     listOfItems: [],
     idCounter: 0
   };
-  changeCompletionState = (index) => {
+  changeCompletionState = (id) => {
     const newStatus = [...this.state.listOfItems];
+    let index = newStatus.findIndex(item => item.id === id)
     newStatus[index].completed = !newStatus[index].completed;
     this.setState(state => ({
       listOfItems: newStatus
