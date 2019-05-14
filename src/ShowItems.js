@@ -5,10 +5,10 @@ class ShowItems extends React.Component {
     return (
       <div>
         <ul className="to-do-list">
-          {this.props.listOfItems.map(item => (
+          {this.props.listOfItems.map((item, index) => (
             <li key={item.id} className="list-item">
               <div className="list-item-details">
-                <input type="checkbox" />
+                <input type="checkbox" value={item.completed} onClick={() => this.props.onChangeCheckbox(index)}/>
                 {item.message}
                 <button
                   onClick={() => this.props.onDeleteItem(item)}

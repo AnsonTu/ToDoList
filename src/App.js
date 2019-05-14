@@ -10,6 +10,13 @@ class App extends React.Component {
     listOfItems: [],
     idCounter: 0
   };
+  changeCompletionState = (index) => {
+    const newStatus = [...this.state.listOfItems];
+    newStatus[index].completed = !newStatus[index].completed;
+    this.setState(state => ({
+      listOfItems: newStatus
+    }));
+  };
   increaseCounter = () => {
     this.setState(state => ({
       idCounter: state.idCounter + 1
@@ -37,6 +44,7 @@ class App extends React.Component {
           idCounter={this.state.idCounter}
         />
         <ShowItems
+          onChangeCheckbox={this.changeCompletionState}
           onDeleteItem={this.removeListItem}
           listOfItems={this.state.listOfItems}
         />

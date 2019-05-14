@@ -6,6 +6,7 @@ class CreateItems extends React.Component {
     event.preventDefault();
     const itemValues = serializeForm(event.target, { hash: true });
     itemValues.id = this.props.idCounter;
+    itemValues.completed = false;
     if (this.props.onCreateItem) {
       this.props.onCreateItem(itemValues);
     }
