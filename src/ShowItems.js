@@ -1,19 +1,30 @@
 import React from "react";
+import { observer } from "mobx-react";
 
 class ShowItems extends React.Component {
   render() {
-    let finishedItems = this.props.listOfItems.filter(items => items.completed === true);
-    let unfinishedItems = this.props.listOfItems.filter(items => items.completed === false);
+    const { store } = this.props;
+    let finishedItems = store.listOfItems.filter(
+      items => items.completed === true
+    );
+    let unfinishedItems = store.listOfItems.filter(
+      items => items.completed === false
+    );
     return (
       <div>
-        <ul className="unfinished-items-list">Unfinished Items
+        <ul className="unfinished-items-list">
+          Unfinished Items
           {unfinishedItems.map(item => (
             <li key={item.id} className="list-item">
               <div className="list-item-details">
-                <input type="checkbox" checked={item.completed} onClick={() => this.props.onChangeCheckbox(item.id)}/>
+                <input
+                  type="checkbox"
+                  defaultChecked={item.completed}
+                  onClick={() => store.changeCompletionState(item.id)}
+                />
                 {item.message}
                 <button
-                  onClick={() => this.props.onDeleteItem(item)}
+                  onClick={() => store.removeListItem(item)}
                   className="remove-item"
                 >
                   Remove
@@ -22,14 +33,19 @@ class ShowItems extends React.Component {
             </li>
           ))}
         </ul>
-        <ul className="finished-items-list">Finished Items
+        <ul className="finished-items-list">
+          Finished Items
           {finishedItems.map(item => (
             <li key={item.id} className="list-item">
               <div className="list-item-details">
-                <input type="checkbox" checked={item.completed} onClick={() => this.props.onChangeCheckbox(item.id)}/>
+                <input
+                  type="checkbox"
+                  defaultChecked={item.completed}
+                  onClick={() => store.changeCompletionState(item.id)}
+                />
                 {item.message}
                 <button
-                  onClick={() => this.props.onDeleteItem(item)}
+                  onClick={() => store.removeListItem(item)}
                   className="remove-item"
                 >
                   Remove
@@ -43,4 +59,4 @@ class ShowItems extends React.Component {
   }
 }
 
-export default ShowItems;
+export default observer(ShowItems);
